@@ -4,7 +4,7 @@
 ### Acquisition
 Three intrepid scientists Alice, Bob, and Carol are embarking on a series of groundbreaking experiments.
 
-No two experiments can be done on the same date and only one of the scientists conducts the experiment on that day. In each experiment, the experimenter acquires several grayscale images of mysterios blobs, like so:
+Only one experiments can be done on the same date and only one of the scientists conducts the experiment for that day. In each experiment, the experimenter acquires several grayscale images of mysterios blobs, like so:
 
 |![mysterious blobs](blobs.png)|
 |:-------:|
@@ -234,13 +234,17 @@ class Acquire(dj.Imported):
                 dict(key, image_id=i, image=make_image()))
 ```
 
-There is a lot going on here. We defined two new tables `Acquire` and `Acquire.Image`.  
+Let's unpack what is  going on here. 
+
+We defined two new tables `Acquire` and `Acquire.Image`.  
 
 `Acquire` makes a foreign key reference to `Experiment` from its primary key and has no other attributes in its primary key.  This means that `Acquire` has a 1:1 relationship to `Experiment`: at most one `Acquire` entry can exist for every `Experiment` entry.
 
-`Acquire` also has the attribute `timestamp` of type `typestamp` and default value of `CURRENT_TIMESTAMP`. 
+`Acquire` also has the attribute `timestamp` of type `timestamp` and default value of `CURRENT_TIMESTAMP`. 
 
-`Acquire` is of type `dj.Imported`, which suggests that 
+`Acquire` is of type `dj.Imported`, which suggests that its data are populated automatically but by require access to data outside the datajoint database.  The other automatic table type is `dj.Computed`, which work similarly to `dj.Imported` and only use data upstream in the data pipeline already in the database.
+
+The automatic acquisition is performed by calling its `populate` method.
 
 
 
