@@ -6,14 +6,14 @@ Three intrepid scientists Alice, Bob, and Carol are embarking on a series of gro
 
 Only one experiments can be done on the same date and only one of the scientists conducts the experiment for that day. In each experiment, the experimenter acquires several grayscale images of mysterious blobs, like so:
 
-|![mysterious blobs](blobs.png)|
+|![mysterious blobs](figures/blobs.png)|
 |:-------:|
 |*Figure 1. Mysterious blobs*|
 
 ### Analysis 
 The analysis detects the blobs in the image and reports their (x,y) positions and amplitudes, like so:
 
-|![mysterious blobs](crosses.png)|
+|![mysterious blobs](figures/crosses.png)|
 |:-------:|
 |*Figure 2. Detected blobs*|
 
@@ -164,36 +164,6 @@ e.insert((
         ("2016-10-06", "Alice", "A boson got loose.")
     ))
 ```
-
-Preview the data by 
-
-```python
->>> Experiment()
-```
-
- <h3>daily experiment</h3>
-            <div style="max-height:1000px;max-width:1500px;overflow:auto;">
-            <table border="1" class="dataframe">
-                <thead> <tr> <th> <em>exp_date</em></th>
-                <th>name</th><th>notes </th> </tr> </thead>
-                <tbody> <tr> <td>2016-10-01</td>
-<td>Carol</td>
-<td>awesome data!</td></tr><tr><td>2016-10-02</td>
-<td>Bob</td>
-<td></td></tr><tr><td>2016-10-03</td>
-<td>Alice</td>
-<td>found a piece of dark matter.</td></tr><tr><td>2016-10-04</td>
-<td>Carol</td>
-<td>stunning!</td></tr><tr><td>2016-10-05</td>
-<td>Bob</td>
-<td>inexplicable patterns.</td></tr><tr><td>2016-10-06</td>
-<td>Alice</td>
-<td>A boson got loose.</td> </tr> </tbody>
-            </table>
-            <p>6 tuples</p></div>
-            
----
-
 
 Note that the insert 
 
@@ -388,7 +358,7 @@ At any point, you may visualize the entire schema using the `dj.ERD` class:
 >>> dj.ERD(schema).draw()
 ```
 
-![mysterious blobs](erd1.png)
+![mysterious blobs](figures/erd1.png)
 
 The ERD (entity-relationship diagram) shows all the classes as nodes, color-coded (gray=lookup, green=manual, blue=imported, red=computed, small font=part tables)
 

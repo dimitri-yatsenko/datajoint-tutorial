@@ -25,6 +25,12 @@ Matching tuples can be *merged* into a single tuple without any conflicts of att
 ### Examples
 The following two tuples do match:
 
+---
+date: 2016-10
+user: forrest
+action: 3
+---
+
 | date | user | action |
 |:-:|:-:|:-:|   
 | 2016-12-01 |  forrest | 3 | 
