@@ -1,5 +1,7 @@
 frontmatter.md
 introduction.md
+license.md
 publications.md
 mainmatter.md
+configuration.md
 experiment.md
