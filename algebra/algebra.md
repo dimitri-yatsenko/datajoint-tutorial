@@ -4,7 +4,7 @@ DataJoint implements a complete algebra of operators on relations, or *relationa
 DataJoint's relational algebra, we believe, improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
 
 ## Principles
-1. **Purely relational**: Data are represented and manipulated in the form of *relations*: sets of tuples with named attributes.
+1. **Purely relational**: Data are represented and manipulated in the form of *relations*. A relation is a sets of tuples corresponding to the same heading.
 1. **Algebraic closure**: All relational operators operate on relations and yield relations.  Thus relational expressions may be used as operands in other expressions or may be assigned to variables to be used in other expressions.
 1. **Attributes are identified by names.**  All attributes of relations have well-defined names. This includes derived relations resulting from relational operators.  Relational operators use attribute names to determine how to perform the operation. The order of the attributes in relations is not significant.
 1. **All relations have a primary key.**  This includes derived relations resulting from relational operators, for which the primary key is properly derived from the primary keys of the operands in expressions.  Relational operators use the information about the operands' primary keys to define the query.
@@ -16,7 +16,10 @@ Binary relational operators in DataJoint are based on the concept of *matching t
 
 Here *common attributes* are those that have the same names in both tuples.  It is usually assumed that the common attributes are of compatible data types to allow equality comparisons.
 
-It may be conceptually convenient to imagine that relations have an additional attribute, `omega` whose domain comprises only one value, $\omega$.  Then the definition of matching tuples is simplified: 
+Another way to phrase the same definition is 
+> Two tuples *match* when they have no common attributes whose values differ.
+
+It may be conceptually convenient to imagine that all relations always have an additional invisible attribute, `omega` whose domain comprises only one value, 1.  Then the definition of matching tuples is simplified: 
 
 > Two tuples *match* when their common attributes contain the same values.
 
