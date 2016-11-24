@@ -6,14 +6,14 @@ Three intrepid scientists Alice, Bob, and Carol are embarking on a series of gro
 
 Only one experiments can be done on the same date and only one of the scientists conducts the experiment for that day. In each experiment, the experimenter acquires several grayscale images of mysterious blobs, like so:
 
-|![mysterious blobs](figures/blobs.png)|
+|![mysterious blobs](images/blobs.png)|
 |:-------:|
 |*Figure 1. Mysterious blobs*|
 
 ### Analysis 
 The analysis detects the blobs in the image and reports their (x,y) positions and amplitudes, like so:
 
-|![mysterious blobs](figures/crosses.png)|
+|![mysterious blobs](images/crosses.png)|
 |:-------:|
 |*Figure 2. Detected blobs*|
 
@@ -358,7 +358,7 @@ At any point, you may visualize the entire schema using the `dj.ERD` class:
 >>> dj.ERD(schema).draw()
 ```
 
-![mysterious blobs](figures/erd1.png)
+![mysterious blobs](images/erd1.png)
 
 The ERD (entity-relationship diagram) shows all the classes as nodes, color-coded (gray=lookup, green=manual, blue=imported, red=computed, small font=part tables)
 
