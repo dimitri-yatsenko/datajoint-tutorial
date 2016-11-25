@@ -37,4 +37,4 @@ Note that `+` may introduce NULLs.  When the two arguments have different primar
 
 ![](images/union-example4.png)
 
-W> NULLs may lead to unintuitive results in ensuing operations. 
+W> NULLs may lead to unintuitive results in subsequent expressions. 

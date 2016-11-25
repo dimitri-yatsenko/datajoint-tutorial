@@ -25,7 +25,8 @@ Report
 ### Preliminaries
 The following Python functions simulate the data acquisition and analysis.  Provided here only for completeness, they are not part of the main discussion.
 
-<<[Preliminary code](code/experiment_preliminaries.py)
+{line-numbers=off}
+<<[Preliminary functions](code/experiment_preliminaries.py)
 
 ### Create database and declare tables 
 First, let's create the database called `blobs`:
