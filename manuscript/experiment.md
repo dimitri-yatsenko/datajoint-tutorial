@@ -1,7 +1,7 @@
 # Example: "The Experiment"
 
 ## Scenario
-
+{line-numbers=off}
 Three intrepid scientists Alice, Bob, and Carol are embarking on a series of groundbreaking experiments.
 
 Acquisition 
@@ -354,18 +354,9 @@ At any point, you may visualize the entire schema using the `dj.ERD` class:
 >>> dj.ERD(schema).draw()
 ```
 
-![mysterious blobs](images/erd1.png)
+![](images/erd1.png)
 
 The ERD (entity-relationship diagram) shows all the classes as nodes, color-coded (gray=lookup, green=manual, blue=imported, red=computed, small font=part tables)
-
-## Queries
-Let's illustrate a few queries for the results that.
-
-Query: All scientists who have done at least one experiment:
-
-```python
-Scientist() & Experiment()
-```
 
 ## Queries
 Let's illustrate a few queries for the results that.
