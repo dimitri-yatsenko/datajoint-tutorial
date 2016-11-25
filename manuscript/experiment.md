@@ -74,6 +74,7 @@ Finally, `Experiment` contains the attribute `notes` of type `varchar(255)`.  Th
 Thus `Experiment` has attributes `exp_date`, `name`, and `notes`.
 You may confirm this by previewing the table's `heading`:
 
+{line-numbers=off}
 ```
 >>> Experiment().heading
 # daily experiments
@@ -85,6 +86,7 @@ notes=""             : varchar(255)                 # free notes about the exper
 
 You may also get a quick preview of the contents of the tables:
 
+{line-numbers=off}
 ```
 >>> Scientist()
 
@@ -97,6 +99,7 @@ Carol
  (3 tuples)
 ```
 
+{line-numbers=off}
 ```
 >>>  Experiment()
 
@@ -199,8 +202,8 @@ The automatic acquisition is performed by calling its `populate` method:
 ```python
 >>> Acquire().populate()
 ```
-j
-  Populating: {'exp_date': datetime.date(2016, 10, 3)}
+
+    Populating: {'exp_date': datetime.date(2016, 10, 3)}
     ......done
     Populating: {'exp_date': datetime.date(2016, 10, 6)}
     .......done
