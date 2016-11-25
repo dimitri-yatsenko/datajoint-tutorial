@@ -1,4 +1,4 @@
-# Publications
+## Publications
 DataJoint has already been used as the principal tool for data organization and processing for a number of high-profile neuroscience publications.  Below are some examples:
 
 1. Reimer J, McGinley MJ,  Liu Y, Rodenkirch C, Wang Q, McCormick DA, and Tolias AS. Pupil fluctuations track rapid changes in adrenergic and cholinergic activity in cortex. _Nature Communications_ 7 (2016): 13289
@@ -15,6 +15,5 @@ _Nature Biotechnology_ [link](http://www.nature.com/nbt/journal/vaop/ncurrent/fu
 1. Ecker AS, Berens P, Cotton RJ, Subramaniyan M, Denfield GH, Cadwell CR, Smirnakis SM, Bethge M, and Tolias AS (2014): State dependence of noise correlations in macaque primary visual cortex. Neuron 82(1). [link](http://www.cell.com/neuron/abstract/S0896-6273(14)00104-4) [code](https://github.com/aecker/ecker2014) [data](http://bethgelab.org/files/ecker2014.zip) [pdf](http://toliaslab.files.wordpress.com/2011/06/ecker_2014_with_supplement.pdf)
 1. Cotton RJ, Froudarakis E, Storer P, Saggau P, and Tolias AS (2013). Three-dimensional mapping of microcircuit correlation structure. _Frontiers in neural circuits_, 7. [pubmed 24133414](http://www.ncbi.nlm.nih.gov/pubmed/24133414)
 1. Vaiceliunaite A, Erisken S, Franzen F, Katzner S, and Busse L (2013). Spatial integration in mouse primary visual cortex. _Journal of Neurophysiology_, 110(4), 964-972. [pubmed 23719206](http://www.ncbi.nlm.nih.gov/pubmed/23719206)
-
 
 

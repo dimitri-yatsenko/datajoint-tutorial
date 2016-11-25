@@ -5,3 +5,5 @@ publications.md
 mainmatter.md
 configuration.md
 experiment.md
+algebra.md
+union.md

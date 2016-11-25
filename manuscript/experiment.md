@@ -62,3 +62,47 @@ def find_blobs(im, fail_rate=0.01):
         yield x, y
 ```
 
+### Create database and declare tables 
+First, let's create the database called `blobs`:
+
+```python
+import datajoint as dj
+schema = dj.schema('blobs', locals())
+```
+
+### `Scientist` and `Experiment`
+Now, let's create the table `Scientist` so that we can refer to individual scientists later.  We will populate it implicitly using the `contents` property.  The table is of type `dj.Lookup`, suggesting that its information is rather static, not meant to be entered for each experiment.
+
+```python
+@schema
+class Scientist(dj.Lookup):
+    definition = """    # scientists in the lab
+    name : varchar(8)   # scientist name
+    """
+    contents = [['Alice'], ['Bob'], ['Carol']]
+```
+
+The `definition` property defines the structure of the table.  The first line contains the table comment, describing what information is represented by rows in the table.  This table only has one attribute (column) `name` of type variable-length character string up to 8 characters `varchar(8)`.  The column also has a comment describing its meaning.
+
+Now let's define the `Experiment` table containing the information about a day's experiment.
+
+```python
+@schema
+class Experiment(dj.Manual):
+    definition = """ # daily experiment
+    exp_date : date   # experiment date
+    ---
+    -> Scientist
+    notes="" : varchar(255)  # free notes about the experiment
+    """
+```
+
+The `Experiment` table is of type `dj.Manual`, suggesting that it contains information entered manually in each experiment.
+
+Its definition contains a dividing line `---`.  The attributes above the dividing line comprise the table's *primary key*.  No two entries in a table can have the same values of the primary key attributes.  The primary key attributes are also  indexed to speed up searches by their values.  For our `Experiment`, it means that `exp_date` is the most efficient way to identify experiments.
+
+The definition also contains the reference `-> Scientist`.  This reference pastes the primary key attributes of `Scientist` into the definition of `Experiment`.  The primary key of `Scientist` is `name`.  This reference also sets a *foreign key* constraint, which prevents entering any values that are not also present in the referenced table.
+
+Finally, `Experiment` contains the attribute `notes` of type `varchar(255)`.  The definition also specifies its default value, the empty string  `""`.
+
+Thus `Experiment` has attributes `exp_date`, `name`, and `notes`.
