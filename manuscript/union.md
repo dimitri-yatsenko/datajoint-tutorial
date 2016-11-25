@@ -15,125 +15,22 @@ In contrast to SQL and classical relational algebra, attributes are identified b
 
 1.  The order of attributes in the operands does not matter and is not guaranteed in the result.
 
-## Equivalence to OUTER JOIN
+### Properties 
 `a+b` is equivalent to the natural outer join operator in relational algebra.  
-
-## Equivalence to SQL's UNION
-`a+b` is equivalent to relational union if `a` and `b` have the same sets of attributes. 
-
-## Implementation of LEFT and RIGHT OUTER JOINs
-The natural left join (`a NATURAL LEFT JOIN b`) can now be expressed as
-```python
-a * b + a
-```
-or, equivalently, as
-```python
-(a + b) & a
-```
-or, equivalently, as
-```python
-a + (b & a) 
-```
-or, equivalently
-```python
-(a - b) + b
-``` 
-
-It is difficult to make DataJoint recognize all these patterns and to convert them into efficient SQL, so let's introduce the special syntax indicating left or right joins:
-
-```python
-a * ~b      # left outer join  (all rows of `a` are kept).
-~a * b      # right outer join (all rows of `b` are kept). 
-~a * ~b  # outer join (equivalent to `a+b`)
-```
-
-The outer flag `~` survives projections and restrictions but not other operators:
-```python
-~(a & cond) * b    # equivalent to   (~a & cond) * b
-~a.proj() * b    # equivalent to   (~a).proj() * b
-```
+`a+b` is equivalent to the relational union  operator when `a` and `b` have the same sets of attributes. 
 
 ### Examples
-### Example 1:  Simple union
-Let relation `a` with primary key (i, k) equal 
 
-| *i    | *k    | 
-|:-:    |:-:    |
-|   1   |  1    |
-|   1   |  2    |
-|   2   |  1    |
+When the arguments share the same set of attributes, `+` is equivalent to  the set union:
+![](images/union_example1.png)
 
-Let relation `b` with primary key (k) equal 
+When the arguments share do not share any attributes, `+` is equivalent to `*`: 
+![](images/union_example2.png)
 
-| *k    |  i    | 
-|:-:    |:-:    |
-|   1   |   1   |
-|   2   |   1   |
-|   2   |  3    |
+In the most general case, `+` represents the outer natural join: 
+![](images/union_example3.png)
 
-Then `a+b` will be
+Note that `+` may introduce NULLs.  When the two arguments have different primary keys, NULLs may appear in the primary key of the result.
 
-| *i    | *k    | 
-|:-:    |:-:    |
-|   1   |  1    |
-|   1   |  2    |
-|   2   |  1    |
-|   3   |  2    |
-
-### Example 2: No matching attributes:  outer join = inner join
-
-Let relation `a` with primary key (i) equal 
-
-| *i    | m | 
-|:-:    |:-: |
-|   1   |  6  |
-|   2   |  6    |
-
-Let relation `b` with primary key (i, k) equal 
-
-|  *k   | n | 
-|:-:    |:-: |
-|   1   |   8 |
-|   2   |   8 |
-
-Then `a+b` will be
-
-| *i    | *k    | m  | n  |
-|:-:    |:-:    |:-:  |:-:  |
-|   1   |   1   | 6 | 8 |
-|   1   |   2   | 6 | 8 |
-|   2   |   1   | 6 | 8 |
-|   2 |    2  | 6 | 8 |
-
-
-### Example 3:  Simple outer join
-
-Let relation `a` with primary key (i) equal 
-
-| *i    | m | 
-|:-:    |:-: |
-|   1   |  6  |
-|   2   |  6    |
-|   3   |  6    |
-
-Let relation `b` with primary key (i, k) equal 
-
-| *i    |  *k   | n | 
-|:-:    |:-:    |:-: |
-|   1   |   1   | 8 |
-|   1   |   2   | 8 |
-|   2   |  3    | 8 |
-|   4 |   1  | 8 |
-
-Then `a+b` will be
-
-| *i    | *k    | m  | n  |
-|:-:    |:-:    |:-:  |:-:  |
-|   1   |   1   | 6 | 8 |
-|   1   |   2   | 6 | 8 |
-|   2   |  3    | 6 | 8 |
-|   4 |   1  | NULL | 8 |
-|   3  |  NULL | 6 | NULL
-
-Note `a+b` may produce NULLs in the primary key. 
-
+In the most general case, `+` represents the outer natural join: 
+![](images/union_example4.png)

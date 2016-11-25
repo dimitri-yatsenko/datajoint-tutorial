@@ -4,7 +4,7 @@ DataJoint implements a complete algebra of operators on relations, or *relationa
 DataJoint's relational algebra, we believe, improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
 
 ## Principles
-1. **Purely relational**: Data are represented and manipulated in the form of *relations*. A relation is a sets of tuples corresponding to the same heading.
+1. **Purely relational**: Data are represented and manipulated in the form of *relations*. 
 1. **Algebraic closure**: All relational operators operate on relations and yield relations.  Thus relational expressions may be used as operands in other expressions or may be assigned to variables to be used in other expressions.
 1. **Attributes are identified by names.**  All attributes of relations have well-defined names. This includes derived relations resulting from relational operators.  Relational operators use attribute names to determine how to perform the operation. The order of the attributes in relations is not significant.
 1. **All relations have a primary key.**  This includes derived relations resulting from relational operators, for which the primary key is properly derived from the primary keys of the operands in expressions.  Relational operators use the information about the operands' primary keys to define the query.
@@ -37,7 +37,7 @@ The following two tuples also match:
 
 But the following tuples do not match:
 
-![](images/matched_tuples2.png)
+![](images/matched_tuples3.png)
 
 ## Join compatibility
 All binary operators with other relations as its two operands require that their operands be *join-compatible*, which means that:
