@@ -2,8 +2,10 @@ frontmatter.md
 introduction.md
 license.md
 citing.md
+contributing.md 
 history.md
 publications.md
+
 mainmatter.md
 configuration.md
 experiment.md
