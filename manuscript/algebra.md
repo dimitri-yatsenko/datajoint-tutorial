@@ -17,6 +17,7 @@ Binary relational operators in DataJoint are based on the concept of *matching t
 Here *common attributes* are those that have the same names in both tuples.  It is usually assumed that the common attributes are of compatible data types to allow equality comparisons.
 
 Another way to phrase the same definition is 
+
 > Two tuples *match* when they have no common attributes whose values differ.
 
 It may be conceptually convenient to imagine that all relations always have an additional invisible attribute, `omega` whose domain comprises only one value, 1.  Then the definition of matching tuples is simplified: 
@@ -28,23 +29,11 @@ Matching tuples can be *merged* into a single tuple without any conflicts of att
 ### Examples
 The following two tuples do match:
 
-| date | user | action |
-|:-:|:-:|:-:|   
-| 2016-12-01 |  forrest | 3 | 
-
-| user |  city |
-|:-:|:-:|   
-| forrest |  Mobile, AL | 
+![](images/matched_tuples1.png)
 
 The following two tuples also match:
 
-| date | user | action |
-|:-:|:-:|:-:|   
-| 2016-12-01 |  forrest | 3 | 
-
-| person |  city |
-|:-:|:-:|   
-| jenny |  Mobile, AL | 
+![](images/matched_tuples2.png)
 
 But the following tuples do not match:
 

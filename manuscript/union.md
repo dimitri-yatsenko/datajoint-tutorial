@@ -53,7 +53,7 @@ The outer flag `~` survives projections and restrictions but not other operators
 ~a.proj() * b    # equivalent to   (~a).proj() * b
 ```
 
-## Examples
+### Examples
 ### Example 1:  Simple union
 Let relation `a` with primary key (i, k) equal 
 
