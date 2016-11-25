@@ -8,8 +8,8 @@ This tutorial speaks to scientists who collect, process, analyze, and share comp
 
 This tutorial serves as the specification of DataJoint functionality. If the actual implementation deviates from this tutorial, please review outstanding issues at
 
-* [datajoint-python/issues](https://github.com/datajoint/datajoint-python/issues)
-* [datajoint-matlab/issues](https://github.com/datajoint/datajoint-matlab/issues)
+* <https://github.com/datajoint/datajoint-python/issues>
+* <https://github.com/datajoint/datajoint-matlab/issues>
 
 W>  This is work in progress.  Read  at your own risk
 
