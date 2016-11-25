@@ -5,6 +5,7 @@ Publications making use of DataJoint must acknowledge so by citing
 > Dimitri Yatsenko, Jacob Reimer, Alexander S. Ecker, Edgar Y. Walker, Fabian Sinz, Philipp Berens, Andreas Hoenselaar, Ronald James Cotton, Athanassios S. Siapas, and Andreas S. Tolias. DataJoint: managing big scientific data using MATLAB or Python. *bioRxiv*, page 031658, Nov. 2015
 
 In BibTex format:
+
 ```bibtex
 @article{yatsenko-datajoint-2015,
     title = {{DataJoint}: managing big scientific data using {MATLAB} or {Python}},
