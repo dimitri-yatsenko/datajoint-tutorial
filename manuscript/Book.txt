@@ -1,6 +1,7 @@
 frontmatter.md
 introduction.md
 license.md
+history.md
 publications.md
 mainmatter.md
 configuration.md

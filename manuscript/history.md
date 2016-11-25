@@ -1,4 +1,4 @@
-# History
+## History
 
 **Dimitri Yatsenko** created the first working version of DataJoint for MATLAB in October 2009 during his graduate studies in **Andreas Tolias**' lab at Baylor College of Medicine to manage large volumes of data emerging from his regular experiments.
 
