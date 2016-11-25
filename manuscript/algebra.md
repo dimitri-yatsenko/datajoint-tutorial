@@ -58,5 +58,5 @@ The following table lists DataJoint's relational operators, to be explain in gre
 |join | `a * b` | Contains all possible pairs of matching tuples from `a` and `b` merged together. This operator is known in classical relational algebra as *natural inner join*. If `a` and `b` are relations with the same headings, join becomes equivalent to set intersection.
 |union | `a + b` | Contains all tuples and all attributes from both `a` and `b`.  This operator is known in classical relational algebra as *natural full outer product*. When `a` and `b` are relations with the same heading, it becomes equivalent to set union.   
 |projection | `a.proj(...)` | Contains the same tuples but with some attributes removed or renamed or new attributes computed.  Primary key attributes cannot be removed but may be renamed.
-|aggregation | | `a.aggr(b, ...)` | Similar to projection but allows computing new attributes in the form of aggregation operations on matching tuples from relation `b`.
+|aggregation | `a.aggr(b, ...)` | Similar to projection but allows computing new attributes in the form of aggregation operations on matching tuples from relation `b`.
 
