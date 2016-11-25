@@ -33,6 +33,6 @@ In the most general case, `+` represents the outer natural join:
 
 ![](images/union-example3.png)
 
-Note that `+` may introduce NULLs.  When the two arguments have different primary keys, NULLs may appear in the primary key of the result.
+W> Note that `+` may introduce NULLs.  When the two arguments have different primary keys, NULLs may appear in the primary key of the result.
 
 ![](images/union-example4.png)

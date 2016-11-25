@@ -21,7 +21,7 @@ Report
 : Their report will print the number of experiments that a given scientist has conducted, the percentage of images that have been analyzed for that scientist, the average number of blobs per image for that scientist, and the average amplitude of blobs for that scientist.
 
 
-## Python  implementation 
+## Python solution
 
 ### Preliminaries
 Here we provide Python functions that will simulate the data acquisition and analysis.  Provided here only for completeness, they are not part of the main discussion.
