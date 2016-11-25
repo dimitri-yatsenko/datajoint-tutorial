@@ -1,6 +1,7 @@
 frontmatter.md
 introduction.md
 license.md
+citing.md
 history.md
 publications.md
 mainmatter.md

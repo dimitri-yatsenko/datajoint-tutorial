@@ -1,4 +1,4 @@
-# Citing DataJoint
+## Citing DataJoint
 
 Publications making use of DataJoint must acknowledge so by citing
 
