@@ -1,7 +1,6 @@
 # Example: "The Experiment"
 
 ## Scenario
-{line-numbers=off}
 Three intrepid scientists Alice, Bob, and Carol are embarking on a series of groundbreaking experiments.
 
 Acquisition 
@@ -26,7 +25,8 @@ Report
 ### Preliminaries
 Here we provide Python functions that will simulate the data acquisition and analysis.  Provided here only for completeness, they are not part of the main discussion.
 
-```python
+{line-numbers=off,lang=python}
+~~~~~~~~~~~~
 # Preliminaries:
 # This section provides functions that will be used by your project.
 import numpy as np
@@ -60,7 +60,8 @@ def find_blobs(im, fail_rate=0.01):
             print("Fail!", flush=True)
             raise BlobFail
         yield x, y
-```
+~~~~~~~~~
+
 
 ### Create database and declare tables 
 First, let's create the database called `blobs`:
