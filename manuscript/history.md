@@ -12,6 +12,6 @@ By early 2016, the Python implementation had matched and, in some respects, surp
 Currently, our data pipelines seamlessly combine \matlab nodes and Python nodes.
 
 Several other neuroscience labs have adopted DataJoint as their principal data organization and processing tool.
-Some publications making use of DataJoint are listed at http://datajoint.github.io/publications.
+Some publications making use of DataJoint are listed at [http://datajoint.github.io/publications].
 
-When Andreas Tolias' lab joined the IARPA-sponsored MICrONS project (http://www.iarpa.gov/index.php/research-programs/microns) in January 2016, DataJoint became the principal tool for organizing data for ongoing processing and concurrent access across many institutions with data hosting and processing moving from lab-based servers to cloud hosting and processing.
+When Andreas Tolias' lab joined the IARPA-sponsored MICrONS project [http://www.iarpa.gov/index.php/research-programs/microns] in January 2016, DataJoint became the principal tool for organizing data for ongoing processing and concurrent access across many institutions with data hosting and processing moving from lab-based servers to cloud hosting and processing.
