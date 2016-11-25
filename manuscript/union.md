@@ -22,15 +22,19 @@ In contrast to SQL and classical relational algebra, attributes are identified b
 ### Examples
 
 When the arguments share the same set of attributes, `+` is equivalent to  the set union:
+
 ![](images/union-example1.png)
 
 When the arguments share do not share any attributes, `+` is equivalent to `*`: 
+
 ![](images/union-example2.png)
 
 In the most general case, `+` represents the outer natural join: 
+
 ![](images/union-example3.png)
 
 Note that `+` may introduce NULLs.  When the two arguments have different primary keys, NULLs may appear in the primary key of the result.
 
 In the most general case, `+` represents the outer natural join: 
+
 ![](images/union-example4.png)
