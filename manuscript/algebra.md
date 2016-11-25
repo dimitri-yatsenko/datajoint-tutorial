@@ -1,4 +1,4 @@
-# Relational algebra
+# Data queries 
 
 DataJoint implements a complete algebra of operators on relations, or *relational algebra*.
 DataJoint's relational algebra, we believe, improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
@@ -37,13 +37,7 @@ The following two tuples also match:
 
 But the following tuples do not match:
 
-| date | person | action |
-|:-:|:-:|:-:|   
-| 2016-12-01 |  forrest | 3 | 
-
-| person |  city |
-|:-:|:-:|   
-| jenny |  Mobile, AL | 
+![](images/matched_tuples2.png)
 
 ## Join compatibility
 All binary operators with other relations as its two operands require that their operands be *join-compatible*, which means that:
