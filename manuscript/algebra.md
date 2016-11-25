@@ -51,12 +51,12 @@ These restrictions are introduced both for performance reasons and for conceptua
 ## Summary of relational operators
 The following table lists DataJoint's relational operators, to be explain in great detail later.
 
-| operator | name | result
+| operator | notation | result
 |:------------:|:------------:|:-------------------------------------------------- |
-| `a & cond` | restriction |  Contains all tuples from `a` that match the condition `cond`.  The condition `cond` may take on various forms, including other relations, mappings, strings, OR-lists, or AND-lists.  When `a` and `cond` are relations with the same headings, it becomes equivalent to set intersection.  Restriction is the only operator necessary to understand for basic use of DataJoint. 
-| `a - cond` | difference | Contains all tuples from `a` that do not match the condition `cond`. The condition `cond` may take on various forms, including other relations, mappings, strings, OR-lists, or AND-lists.   When `a` and `cond` are relations with the same headings, it becomes equivalent to set difference.
-| `a * b` | join | Contains all possible pairs of matching tuples from `a` and `b` merged together. This operator is known in classical relational algebra as *natural inner join*. If `a` and `b` are relations with the same headings, join becomes equivalent to set intersection.
-| `a + b` | union | Contains all tuples and all attributes from both `a` and `b`.  This operator is known in classical relational algebra as *natural full outer product*. When `a` and `b` are relations with the same heading, it becomes equivalent to set union.   
-| `a.proj(...)` | projection  | Contains the same tuples but with some attributes removed or renamed or new attributes computed.  Primary key attributes cannot be removed but may be renamed.
-| `a.aggr(b, ...)` | aggregation  | Similar to projection but allows computing new attributes in the form of aggregation operations on matching tuples from relation `b`.
+| restriction | `a & cond` | Contains all tuples from `a` that match the condition `cond`.  The condition `cond` may take on various forms, including other relations, mappings, strings, OR-lists, or AND-lists.  When `a` and `cond` are relations with the same headings, it becomes equivalent to set intersection.  Restriction is the only operator necessary to understand for basic use of DataJoint. 
+|difference | `a - cond` | Contains all tuples from `a` that do not match the condition `cond`. The condition `cond` may take on various forms, including other relations, mappings, strings, OR-lists, or AND-lists.   When `a` and `cond` are relations with the same headings, it becomes equivalent to set difference.
+|join | `a * b` | Contains all possible pairs of matching tuples from `a` and `b` merged together. This operator is known in classical relational algebra as *natural inner join*. If `a` and `b` are relations with the same headings, join becomes equivalent to set intersection.
+|union | `a + b` | Contains all tuples and all attributes from both `a` and `b`.  This operator is known in classical relational algebra as *natural full outer product*. When `a` and `b` are relations with the same heading, it becomes equivalent to set union.   
+|projection | `a.proj(...)` | Contains the same tuples but with some attributes removed or renamed or new attributes computed.  Primary key attributes cannot be removed but may be renamed.
+|aggregation | | `a.aggr(b, ...)` | Similar to projection but allows computing new attributes in the form of aggregation operations on matching tuples from relation `b`.
 

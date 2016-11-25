@@ -6,4 +6,9 @@ mainmatter.md
 configuration.md
 experiment.md
 algebra.md
+restriction.md
+difference.md
+join.md
 union.md
+projection.md
+aggregation.md
