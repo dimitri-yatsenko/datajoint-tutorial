@@ -9,7 +9,9 @@ publications.md
 mainmatter.md
 configuration.md
 experiment.md
+data_model.md
 algebra.md
+critique_of_sql.md
 restriction.md
 difference.md
 join.md
