@@ -10,7 +10,6 @@ mainmatter.md
 
 configuration.md
 experiment.md
-data_model.md
 data_definition.md
 algebra.md
 restriction.md

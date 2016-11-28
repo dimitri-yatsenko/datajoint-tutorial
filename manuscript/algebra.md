@@ -27,15 +27,15 @@ It may be conceptually convenient to imagine that all relations always have an a
 Matching tuples can be *merged* into a single tuple without any conflicts of attribute names and values.
 
 ### Examples
-The following two tuples do match:
+This is a matching pair of tuples:
 
 ![](images/matched_tuples1.png)
 
-The following two tuples also match:
+and so is this one:
 
 ![](images/matched_tuples2.png)
 
-But the following tuples do not match:
+but these tuples do *not* match:
 
 ![](images/matched_tuples3.png)
 

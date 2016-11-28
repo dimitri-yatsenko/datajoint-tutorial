@@ -36,7 +36,9 @@ SQL and most relational algebras do not have a consistent way by which attribute
 SQL usually has multiple ways of expressing logically equivalent queries, sometimes with considerable differences in performance.  For example, *correlated subqueries* are often highly inefficient and may often be re-written as more efficient join queries.
 
 ## DataJoint's philosophy
+
 ### Scrupulously relational
+
 DataJoint adheres faithfully to the relational data model. *All* DataJoint relations, including *base relations* (tables) and *derived relations* (results of expressions) are proper relations (sets of tuples) with a well-defined primary key and unambiguous attribute names.
 
 ### Entity integrity
