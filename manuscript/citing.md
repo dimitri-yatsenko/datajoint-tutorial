@@ -6,6 +6,7 @@ Publications making use of DataJoint must acknowledge so by citing
 
 In BibTex format:
 
+{line-numbers=off}
 ```bibtex
 @article{yatsenko-datajoint-2015,
     title = {{DataJoint}: managing big scientific data using {MATLAB} or {Python}},

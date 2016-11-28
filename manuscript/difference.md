@@ -1,1 +1,1 @@
-## Difference operator -
+## Difference operator --
