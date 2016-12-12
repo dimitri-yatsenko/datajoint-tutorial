@@ -1,4 +1,0 @@
-def main():
-    somesamplecode = True
-
-main()

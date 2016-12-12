@@ -1,4 +1,8 @@
-# Data queries 
+# The data query language 
+DataJoint implements its own data query language.  The same query language can be used in MATLAB, Python, and the `dj2sql` utility.  
+After the query is form, the `fetch` methods can be used to bring the data into the MATLAB or Python workspace. 
+
+
 
 DataJoint implements a complete algebra of operators on relations, or *relational algebra*.
 DataJoint's relational algebra, we believe, improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
