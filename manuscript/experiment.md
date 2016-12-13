@@ -1,7 +1,7 @@
 # Example: "The Experiment"
 
 ## Scenario
-Three intrepid scientists Alice, Bob, and Carol are embarking on a series of groundbreaking experiments.
+The intrepid scientists Alice, Bob, and Carol are embarking on a series of groundbreaking experiments.
 
 Acquisition 
 

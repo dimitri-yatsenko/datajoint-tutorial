@@ -46,7 +46,7 @@ but these tuples do *not* match:
 ## Join compatibility
 All binary operators with other relations as its two operands require that their operands be *join-compatible*, which means that:
 
-1. All common attributes in both operands (attributes with the same name) must be part of the primary key of at least one of the operands.
+1. All common attributes in both operands (attributes with the same name) must be part of the primary key or of a foreign key.
 2. All common attributes in the two relations must be of a compatible datatype for equality comparisons.
 
 These restrictions are introduced both for performance reasons and for conceptual reasons.  For  performance, they encourage queries that rely on indexes.  For conceptual reasons, they encourage database design in which entities in different relations are lated to each other by the use of primary keys and foreign keys.
