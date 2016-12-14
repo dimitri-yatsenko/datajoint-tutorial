@@ -5,12 +5,9 @@ After the query is form, the `fetch` methods can be used to bring the data into 
 DataJoint implements a complete algebra of operators on relations, or *relational algebra*.
 DataJoint's relational algebra improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
 
-The clarity of DataJoint's query expressions stems from the concept of *entity integrity*.  
-Entity integrity states that every relation must have a well-define *primary key*.  
-Normally, this concept is only applied to *base relation*, which store the data in the database. 
-DataJoint goes further by extending entity integrity to all relation, including *derived relations*.
+The clarity of DataJoint's query expressions stems from the concept of *entity integrity*.  Entity integrity states that every relation must have a well-define *primary key*.  Normally, this concept is only applied to *base relation*, which store the data in the database.  DataJoint goes further by extending entity integrity to all relation, including *derived relations*.
 
->T In DataJoint, all relations possess a primary key.  This applies to results of expressions too.
+I> In DataJoint, all relations possess a primary key.  This applies to results of expressions too.  All relational operators respect and preserve the primary key.
 
 
 ## Principles
