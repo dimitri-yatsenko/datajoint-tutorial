@@ -35,6 +35,6 @@ W> The left join is the only operator that can introduce `NULL`s in the primary 
 
 ### Properties of join
 
-1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A` {$$}\cap{/$$} `B`.
+1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to the set intersection `A` {$$}\cap{/$$} `B`.  Hence, DataJoint does not need a separate intersection operator.
 2. Commutative:  `A * B` is equivalent to `B * A`.  However, the left join is *not* commutative.
 3. Associative:  `(A * B) * C` is equivalent to `A * (B * C)`.   However, the left joint is *not* associative.
