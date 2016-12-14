@@ -1,7 +1,16 @@
 # Queries 
+
+##  
+
 Data queries in DataJoint have the form of `rel.fetch()` where `rel` is a *relational expression* and `fetch` is one of several variants of fetching commands.  In MATLAB, when `rel` is an expression, the syntax `fetch(rel)` is used instead. 
 
 The relational expression `rel` may be a *base relation* or a *derived relation*.
+
+Relational expressions are only symbolic representations of the data.  They may allow a quick preview but do not contain the data itself.  Thus repeated executions of the `fetch` method may yield different results if the state of the database changes in the meantime.
+
+The `fetch` methods transfer the desired data from the database to the namespace of the host language.
+
+The relational expressions have very similar syntax and meaning in MATLAB, Python, and `dj2sql`. The `fetch` methods have several variations and parameters that are specific to the host language.
 
 ## Base relations
 In simplest queries, `rel` is a *base relation* representing a table in the database.  Each table has a dedicated class in the host language.
@@ -9,16 +18,20 @@ In simplest queries, `rel` is a *base relation* representing a table in the data
 For example, the following code fetches the entire contents of the table represented by class `experiment.Image`:
 
 Python:
+
 {language=python}
-~~~~~~~~
-data = experiment.Image().fetch()    
-~~~~~~~~
+~~~~~~~~~
+rel = experiment.Image()
+data = rel.fetch()    
+~~~~~~~~~
 
 MATLAB:
+
 {language=matlab}
-~~~~~~~~
-data = fetch(experiment.Image, '*')
-~~~~~~~~
+~~~~~~~~~
+rel = experiment.Image;
+data = rel.fetch('*');
+~~~~~~~~~
 
 
 Queries have the form of expressions using operators to derive the desired relation.  The expressions themselves do not contain any data.  They represent the desired data symbolically. 
