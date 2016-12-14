@@ -22,8 +22,6 @@ Example 3
 
 ![](images/join-example3.png)
 
-
-
 ### Left join
 A modification of the join operator is the *left join*.  It is implemented as `A ** B` in Python and `A .* B` in MATLAB.
 The left join keeps all the tuples from `A` even in the absence of the matching tuples from `B`.  For tuples with no matches in `B`, the non-key attributes from `B` are filled with `NULL`s.
@@ -37,7 +35,7 @@ W> The left join is the only operator that can introduce `NULL`s in the primary 
 
 ## Properties
 
-1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A {$$}\cap{$$} B`.
+1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A {$$}\cap{/$$} B`.
 2. Commutative property:  `A * B` is equivalent to `B * A`
 3. Associativity property:  `A * B * C` is equivalent to `A * (B * C)`.
 4. Left join is not commutative: `A ** B` is *not* generally equivalent to `B ** A`. 
