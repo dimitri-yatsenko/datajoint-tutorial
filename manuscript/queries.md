@@ -19,14 +19,15 @@ For example, the following code fetches the entire contents of the table represe
 
 Python:
 
-{title="Getting all data from `experiment.Image` in Python", language=python}
+{title="Getting all data from `experiment.Image` in Python", lang=python}
+~~~~~~~~~
 rel = experiment.Image()
 data = rel.fetch()    
 ~~~~~~~~~
 
 MATLAB:
 
-{title="Getting all data from `experiment.Image` in MATLAB", language=matlab}
+{title="Getting all data from `experiment.Image` in MATLAB", lang=matlab}
 ~~~~~~~~~
 rel = experiment.Image;
 data = rel.fetch('*');
