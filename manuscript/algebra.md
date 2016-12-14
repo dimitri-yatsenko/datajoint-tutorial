@@ -1,7 +1,18 @@
 # The data query language 
 DataJoint implements its own data query language.  The same query language can be used in MATLAB, Python, and the `dj2sql` utility.  
-After the query is form, the `fetch` methods can be used to bring the data into the MATLAB or Python workspace. 
 
+Queries have the form of expressions using operators to derive the desired relation.  The expressions themselves do not contain any data.  They represent the desired data symbolically. 
+
+Once a query is formed, the `fetch` methods are used to bring the data into the MATLAB or Python workspace.  Since the expressions are only symbolic representations, repeated `fetch` calls may yield different results as the state of the database is modified.
+
+## Base relations
+The simplest query is a *base relation*:  An instance of a DataJoint relation object.
+
+For example, 
+```python
+```
+
+## Relational algebra
 DataJoint implements a complete algebra of operators on relations, or *relational algebra*.
 DataJoint's relational algebra improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
 
@@ -10,7 +21,7 @@ The clarity of DataJoint's query expressions stems from the concept of *entity i
 I> In DataJoint, all relations possess a primary key.  This applies to results of expressions too.  All relational operators respect and preserve the primary key.
 
 
-## Principles
+## Principles of relational algebra
 1. **Purely relational**: Data are represented and manipulated in the form of *relations*. 
 1. **Algebraic closure**: All relational operators operate on relations and yield relations.  Thus relational expressions may be used as operands in other expressions or may be assigned to variables to be used in other expressions.
 1. **Attributes are identified by names.**  All attributes of relations have well-defined names. This includes derived relations resulting from relational operators.  Relational operators use attribute names to determine how to perform the operation. The order of the attributes in relations is not significant.
@@ -56,7 +67,6 @@ These restrictions are introduced both for performance reasons and for conceptua
 
 
 ## Summary of relational operators
-The following table lists DataJoint's relational operators, to be explain in great detail later.
 
 | operator | notation
 |:--|:--|
