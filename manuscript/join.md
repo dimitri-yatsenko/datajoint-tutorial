@@ -37,7 +37,7 @@ W> The left join is the only operator that can introduce `NULL`s in the primary 
 
 ## Properties
 
-1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A $$\cap$$ B`.
+1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A {$$}\cap{$$} B`.
 2. Commutative property:  `A * B` is equivalent to `B * A`
 3. Associativity property:  `A * B * C` is equivalent to `A * (B * C)`.
 4. Left join is not commutative: `A ** B` is *not* generally equivalent to `B ** A`. 
