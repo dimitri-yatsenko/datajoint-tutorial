@@ -1,11 +1,11 @@
 ## Join operator *
 The result of the join operator `A * B` contains all matching combinations of tuples from `A` and `B`.
 
-### Principles
+### Principles join
 1. The operands `A` and `B` must be *join-compatible*.
 2. The primary key of the result is the union of the primary keys of the operands.
 
-### Examples
+### Examples of join
 
 Example 1
 : When the operands have no common attributes, the result is the cross product -- all combinations of tuples.
@@ -33,9 +33,9 @@ Example 4
 
 W> The left join is the only operator that can introduce `NULL`s in the primary key of the result.  `NULL`s in primary attributes may produce unintuitive results in subsequent expressions.
 
-## Properties
+## Properties of join
 
-1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A {$$}\cap{/$$} B`.
+1. When `A` and `B` have the same attributes, the join `A * B` becomes equivalent to of as the set intersection `A` {$$}\cap{/$$} `B`.
 2. Commutative property:  `A * B` is equivalent to `B * A`
 3. Associativity property:  `A * B * C` is equivalent to `A * (B * C)`.
 4. Left join is not commutative: `A ** B` is *not* generally equivalent to `B ** A`. 
