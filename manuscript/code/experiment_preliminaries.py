@@ -1,5 +1,3 @@
-# Preliminaries:
-# This section provides functions that will be used by your project.
 import numpy as np
 import time
 from scipy import ndimage
