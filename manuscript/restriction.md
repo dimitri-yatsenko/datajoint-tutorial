@@ -9,3 +9,10 @@ The condition `cond` may be one of the following:
 * a collection of conditions (e.g. a `list` in Python or a cell array in MATLAB)
 * an `AndList`
 * A boolean expression (`True` or `False` in Python or `true` or `false` in MATLAB)
+
+### Restriction by another relation 
+When restricting one relation by another relation `A & B`, the two relations must be *join-compatible*.  The result will contain all tuples from `A` for which there exist a matching tuple in `B`. 
+
+Restrict example 1
+
+![](images/restrict-example1.png)
