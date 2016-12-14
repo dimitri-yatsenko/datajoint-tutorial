@@ -59,7 +59,7 @@ These restrictions are introduced both for performance reasons and for conceptua
 The following table lists DataJoint's relational operators, to be explain in great detail later.
 
 | operator | notation
-|:------------:|:------------:|
+|:--|:--|
 | restriction | `a & cond` |
 | difference  | `a - cond` |
 | join        | `a * b`    | 
