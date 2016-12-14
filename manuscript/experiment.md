@@ -1,4 +1,4 @@
-# Example: "The Experiment"
+# Example: "Mysterious blobs"
 
 ## Scenario
 The intrepid scientists Alice, Bob, and Carol are embarking on a series of groundbreaking experiments.

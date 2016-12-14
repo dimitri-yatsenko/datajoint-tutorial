@@ -19,9 +19,8 @@ Example 1
 
 ![](images/union-example1.png)
 
-Example 2:
-
-Non-key attributes are combined from both relations and filled with NULLs when missing.
+Example 2
+: Non-key attributes are combined from both relations and filled with NULLs when missing.
 
 ![](images/union-example2.png)
 

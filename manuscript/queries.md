@@ -17,15 +17,11 @@ In simplest queries, `rel` is a *base relation* representing a table in the data
 
 For example, the following code fetches the entire contents of the table represented by class `experiment.Image`:
 
-Python:
-
 {title="Getting all data from `experiment.Image` in Python", lang=python}
 ~~~~~~~~~
 rel = experiment.Image()
 data = rel.fetch()    
 ~~~~~~~~~
-
-MATLAB:
 
 {title="Getting all data from `experiment.Image` in MATLAB", lang=matlab}
 ~~~~~~~~~
@@ -39,7 +35,7 @@ Queries have the form of expressions using operators to derive the desired relat
 Once a query is formed, the `fetch` methods are used to bring the data into the MATLAB or Python workspace.  Since the expressions are only symbolic representations, repeated `fetch` calls may yield different results as the state of the database is modified.
 
 
-## Deriving relations
+## Relational operators
 
 DataJoint implements a complete algebra of operators on relations:
 
@@ -60,8 +56,6 @@ Starting with base relations, these operators allow constructing *derived relati
 DataJoint's relational algebra improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
 
 The clarity of DataJoint's query expressions stems from the concept of *entity integrity*.  Entity integrity states that every relation must have a well-define *primary key*.  Normally, this concept is only applied to *base relation*, which store the data in the database.  DataJoint goes further by extending entity integrity to all relation, including *derived relations*.
-
-I> In DataJoint, all relations possess a primary key.  This applies to results of expressions too.  All relational operators respect and preserve the primary key.
 
 
 1. **Purely relational**: Data are represented and manipulated in the form of *relations*. 
