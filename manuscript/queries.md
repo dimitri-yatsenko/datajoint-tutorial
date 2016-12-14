@@ -1,19 +1,49 @@
-# The data query language 
-DataJoint implements its own data query language.  The same query language can be used in MATLAB, Python, and the `dj2sql` utility.  
+# Queries 
+Data queries in DataJoint have the form of `rel.fetch()` where `rel` is a *relational expression* and `fetch` is one of several variants of fetching commands.  In MATLAB, when `rel` is an expression, the syntax `fetch(rel)` is used instead. 
+
+The relational expression `rel` may be a *base relation* or a *derived relation*.
+
+## Base relations
+In simplest queries, `rel` is a *base relation* representing a table in the database.  Each table has a dedicated class in the host language.
+
+For example, the following code fetches the entire contents of the table represented by class `experiment.Image`:
+
+Python:
+{language=python}
+~~~~~~~~
+data = experiment.Image().fetch()    
+~~~~~~~~
+
+MATLAB:
+{language=matlab}
+~~~~~~~~
+data = fetch(experiment.Image, '*')
+~~~~~~~~
+
 
 Queries have the form of expressions using operators to derive the desired relation.  The expressions themselves do not contain any data.  They represent the desired data symbolically. 
 
 Once a query is formed, the `fetch` methods are used to bring the data into the MATLAB or Python workspace.  Since the expressions are only symbolic representations, repeated `fetch` calls may yield different results as the state of the database is modified.
 
-## Base relations
-The simplest query is a *base relation*:  An instance of a DataJoint relation object.
 
-For example, 
-```python
-```
+## Deriving relations
 
-## Relational algebra
-DataJoint implements a complete algebra of operators on relations, or *relational algebra*.
+DataJoint implements a complete algebra of operators on relations:
+
+{title="Summary of relational operators"}
+| operator | notation
+|:--|:--|
+| restriction | `A & cond` |
+| difference  | `A - cond` |
+| join        | `A * B`    | 
+| union       | `A + B`    | 
+| projection  | `A.proj(...)` | 
+| aggregation | `A.aggr(B, ...)` | 
+
+Starting with base relations, these operators allow constructing *derived relations* containing the exact information needed. 
+
+
+## Principles of relational algebra
 DataJoint's relational algebra improves upon the classical relational algebra and upon other query languages to simplify and enhance the construction and interpretation of precise and efficient data queries.
 
 The clarity of DataJoint's query expressions stems from the concept of *entity integrity*.  Entity integrity states that every relation must have a well-define *primary key*.  Normally, this concept is only applied to *base relation*, which store the data in the database.  DataJoint goes further by extending entity integrity to all relation, including *derived relations*.
@@ -21,7 +51,6 @@ The clarity of DataJoint's query expressions stems from the concept of *entity i
 I> In DataJoint, all relations possess a primary key.  This applies to results of expressions too.  All relational operators respect and preserve the primary key.
 
 
-## Principles of relational algebra
 1. **Purely relational**: Data are represented and manipulated in the form of *relations*. 
 1. **Algebraic closure**: All relational operators operate on relations and yield relations.  Thus relational expressions may be used as operands in other expressions or may be assigned to variables to be used in other expressions.
 1. **Attributes are identified by names.**  All attributes of relations have well-defined names. This includes derived relations resulting from relational operators.  Relational operators use attribute names to determine how to perform the operation. The order of the attributes in relations is not significant.
@@ -66,14 +95,4 @@ All binary operators with other relations as its two operands require that their
 These restrictions are introduced both for performance reasons and for conceptual reasons.  For  performance, they encourage queries that rely on indexes.  For conceptual reasons, they encourage database design in which entities in different relations are lated to each other by the use of primary keys and foreign keys.
 
 
-## Summary of relational operators
-
-| operator | notation
-|:--|:--|
-| restriction | `a & cond` |
-| difference  | `a - cond` |
-| join        | `a * b`    | 
-| union       | `a + b`    | 
-| projection  | `a.proj(...)` | 
-| aggregation | `a.aggr(b, ...)` | 
 

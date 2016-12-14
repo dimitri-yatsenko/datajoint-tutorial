@@ -11,7 +11,7 @@ mainmatter.md
 configuration.md
 experiment.md
 data_definition.md
-algebra.md
+queries.md
 restriction.md
 difference.md
 join.md

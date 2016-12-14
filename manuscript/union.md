@@ -1,4 +1,6 @@
-## Union operator +
+{pagebreak}
+
+## Union operator `+`
 The result of the union operator `A + B` contains all the tuples from both operands.  
 
 ### Principles of union
