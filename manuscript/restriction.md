@@ -1,3 +1,5 @@
+{pagebreak} 
+
 ## Restriction operator `&`
 
 The result of the restriction operator `A & cond` is a subset of the tuples from `A` that meet the condition `cond`. 

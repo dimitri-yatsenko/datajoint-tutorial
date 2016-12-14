@@ -1,4 +1,6 @@
-## Difference operator --
+{pagebreak} 
+
+## Difference operator `-` 
 
 Difference example 1
 : Difference from another relation

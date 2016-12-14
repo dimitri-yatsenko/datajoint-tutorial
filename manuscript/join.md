@@ -1,4 +1,6 @@
-## Join operator *
+{pagebreak}
+
+## Join operator `*`
 The result of the join operator `A * B` contains all matching combinations of tuples from `A` and `B`.
 
 ### Principles of joins
@@ -22,7 +24,7 @@ Example 3
 
 ![](images/join-example3.png)
 
-### Left join
+### Left join 
 A modification of the join operator is the *left join*.  It is implemented as `A ** B` in Python and `A .* B` in MATLAB.
 The left join keeps all the tuples from `A` even in the absence of the matching tuples from `B`.  For tuples with no matches in `B`, the non-key attributes from `B` are filled with `NULL`s.
 
