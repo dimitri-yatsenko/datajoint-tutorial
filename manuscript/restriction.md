@@ -14,5 +14,16 @@ The condition `cond` may be one of the following:
 When restricting one relation by another relation `A & B`, the two relations must be *join-compatible*.  The result will contain all tuples from `A` for which there exist a matching tuple in `B`. 
 
 Restrict example 1
+: Restriction with another relation
 
 ![](images/restrict-example1.png)
+
+Restrict example 2
+: Restriction with a relation with no common attributes
+
+![](images/restrict-example2.png)
+
+Restrict example 3
+: Restriction with an empty relation
+
+![](images/restrict-example3.png)

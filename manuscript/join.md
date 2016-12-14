@@ -1,11 +1,11 @@
 ## Join operator *
 The result of the join operator `A * B` contains all matching combinations of tuples from `A` and `B`.
 
-### Principles join
+### Principles of joins
 1. The operands `A` and `B` must be *join-compatible*.
 2. The primary key of the result is the union of the primary keys of the operands.
 
-### Examples of join
+### Examples of joins
 
 Example 1
 : When the operands have no common attributes, the result is the cross product -- all combinations of tuples.

@@ -71,7 +71,7 @@ These restrictions are introduced both for performance reasons and for conceptua
 | operator | notation
 |:--|:--|
 | restriction | `a & cond` |
-| difference  | `a - cond` |
+| difference  | `a -- cond` |
 | join        | `a * b`    | 
 | union       | `a + b`    | 
 | projection  | `a.proj(...)` | 
