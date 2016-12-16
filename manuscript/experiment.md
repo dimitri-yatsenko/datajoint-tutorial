@@ -25,28 +25,27 @@ Report
 ### Preliminaries
 The following Python functions simulate the data acquisition and analysis.  Provided here only for completeness, they are not part of the main discussion.
 
-{line-numbers=off}
-<<[Preliminary functions](code/experiment_preliminaries.py)
+<<[Preliminary functions](../python/experiment_preliminaries.py)
 
 ### Create database and declare tables 
 First, let's create the database called `blobs`:
 
-{line-numbers=off}
-```python
+{line-numbers=off, lang=python}
+~~~~~~~
 import datajoint as dj
 schema = dj.schema('blobs', locals())
-```
+~~~~~~~
 
 ### `Scientist` and `Experiment`
 Now, let's create the table `Scientist` so that we can refer to individual scientists later.  We will populate it implicitly using the `contents` property.  The table is of type `dj.Lookup`, suggesting that its information is rather static, not meant to be entered for each experiment.
 
-<<[Declare the Scientist table](code/experiment_scientist.py)
+<<[Declare the Scientist table](../python/experiment_scientist.py)
 
 The `definition` property defines the structure of the table.  The first line contains the table comment, describing what information is represented by rows in the table.  This table only has one attribute (column) `name` of type variable-length character string up to 8 characters `varchar(8)`.  The column also has a comment describing its meaning.
 
 Now let's define the `Experiment` table containing the information about a day's experiment.
 
-<<[Declare the Experiment table](code/experiment_experiment.py)
+<<[Declare the Experiment table](../python/experiment_experiment.py)
 
 The `Experiment` table is of type `dj.Manual`, suggesting that it contains information entered manually in each experiment.
 
@@ -59,20 +58,19 @@ Finally, `Experiment` contains the attribute `notes` of type `varchar(255)`.  Th
 Thus `Experiment` has attributes `exp_date`, `name`, and `notes`.
 You may confirm this by previewing the table's `heading`:
 
-{line-numbers=off}
-```
+{lang=python}
+~~~~~~~~~
 >>> Experiment().heading
 # daily experiments
 exp_date             : date                         # experiment date
 ---
 name                 : varchar(8)                   # scientist name
 notes=""             : varchar(255)                 # free notes about the experiment
-```
+~~~~~~~~~
 
 You may also get a quick preview of the contents of the tables:
 
-{line-numbers=off}
-```
+~~~~~~~~~
 >>> Scientist()
 
 scientists in the lab
@@ -93,15 +91,15 @@ daily experiments
 +----------+ +------+ +-------+
 
  (0 tuples)
-```
+~~~~~~~~~
 
 The primary key attributes are indicated with an asterisk `*`.
 
 ### Entering expriment data
 Let's pretend to conduct some experiments by entering data into `Experiments`:
 
-{line-numbers=off}
-```python
+{lang=python}
+~~~~~~~~~~~
 e = Experiment()
 
 # enter one at a time
@@ -115,28 +113,26 @@ e.insert((
         ("2016-10-05", "Bob", "inexplicable patterns."),
         ("2016-10-06", "Alice", "A boson got loose.")
     ))
-```
+~~~~~~~~~~~
 
 Note that the insert
 
-{line-numbers=off}
-```
+{lang=python}
+~~~~~~~~~~~
 >>> Experiment().insert1(['2016-10-01', 'Bob', 'I have a bad feeling about this.'])
 
 pymysql.err.IntegrityError: (1062, "Duplicate entry '2016-10-01' for key 'PRIMARY'")
-```
+~~~~~~~~~~~
 fails because the entry for `2016-10-01` already exists.
 
 The insert
 
-{line-numbers=off}
-```
+{lang=python}
+~~~~~~~~~~~
 >>> Experiment().insert1(['2016-10-07', 'Alce', ''])
+~~~~~~~~~~~
 
-pymysql.err.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`tutorial`.`experiment`, CONSTRAINT `experiment_ibfk_1` FOREIGN KEY (`name`) REFERENCES `#scientist` (`name`)
- ON UPDATE CASCADE)')
-```
-fails because the name `Alce` is misspelled and is not found in `Scientist`.
+will fail because the name `Alce` is misspelled and is not found in `Scientist`.
 
 If the `insert` method is used to enter multiple entries at once and any one of the entries is invalid, then none of the entries are inserted.
 
@@ -144,37 +140,7 @@ If the `insert` method is used to enter multiple entries at once and any one of 
 ### Acquisition
 Let's now define the table `Acquire` to acquire the results of experiments.
 
-{line-numbers=off}
-```python
-import numpy as np
-
-@schema
-class Acquire(dj.Imported):
-    definition = """   # Image data from one experiment
-    -> Experiment
-    ---
-    timestamp = CURRENT_TIMESTAMP  : timestamp
-    """
-
-    class Image(dj.Part):
-        definition = """
-        -> Acquire
-        image_id : tinyint unsigned   # image number within each experiment
-        ---
-        image : longblob  # acquired image
-        """
-
-    def _make_tuples(self, key):
-        print('Populating', key)
-        self.insert1(key)
-        number_of_images = np.random.randint(20)
-        part = self.Image()
-        for i in range(number_of_images):
-            print(end='.')
-            part.insert1(
-                dict(key, image_id=i, image=make_image()))
-        print('done')
-```
+<<[Declare the Acquire table](../python/experiment_acquire.py)
 
 Let's unpack what is  going on here.
 
@@ -188,7 +154,6 @@ We defined two new tables `Acquire` and `Acquire.Image`.
 
 The automatic acquisition is performed by calling its `populate` method:
 
-{line-numbers=off}
 ```python
 >>> Acquire().populate()
 ```
@@ -211,38 +176,10 @@ The automatic acquisition is performed by calling its `populate` method:
 ### Analysis
 Now let's write the classes `Localize` and `Localize.Blob` that compute the (x,y) locations and amplitudes detected blobs in each image.  They rely on the function `find_blobs` defined earlier. Note that function fails randomly (raises the `BlobFail` exception) to illustrate error recovery.
 
-{line-numbers=off}
-```python
-@schema
-class Localize(dj.Computed):
-    definition = """   # Image data from one experiment
-    -> Acquire.Image
-    """
-
-    class Blob(dj.Part):
-        definition = """
-        -> Localize
-        blob_id : tinyint unsigned   # blob within each image
-        ---
-        x : float  # x-coordinate
-        y : float  # y-coordinate
-        amplitude : float  # blob intensity at (x,y)
-        """
-
-    def _make_tuples(self, key):
-        print('Populating:', key)
-        self.insert1(key)
-        img = (Acquire.Image() & key).fetch1['image']
-        part = self.Blob()
-        for i, (x, y) in enumerate(find_blobs(img)):
-            print(flush=True, end='.')
-            part.insert1(dict(key, blob_id=i, x=x, y=y, amplitude=img[y,x]))
-        print('done')
-```
+<<[Declare the Detect table](../python/experiment_detect.py)
 
 Similar to `Acquire`, we populate the `Localize` table using the populate method but we set the `suppress_errors` flag to skip the errors that occur in the `_make_tuples` calls:
 
-{line-numbers=off}
 ```python
 >>> Localize().populate(suppress_errors=True);
 ```
@@ -267,7 +204,6 @@ Similar to `Acquire`, we populate the `Localize` table using the populate method
 
 We can view the progress of the calculation using the `progress` method:
 
-{line-numbers=off}
 ```python
 >>> Localize().progress();
 ```
@@ -278,42 +214,13 @@ This shows that 32 of 68 images have populated without errors.  Those that ended
 
 The execution may take some time because each blob is inserted individually, incurring network delays.  We can re-write the `_make_tuples` method to insert into the part table as a single insert, resulting in substantial speedup:
 
-
-{line-numbers=off}
-```python
-@schema
-class Localize(dj.Computed):
-    definition = """   # Image data from one experiment
-    -> Acquire.Image
-    """
-
-    class Blob(dj.Part):
-        definition = """
-        -> Localize
-        blob_id : tinyint unsigned   # blob within each image
-        ---
-        x : float  # x-coordinate
-        y : float  # y-coordinate
-        amplitude : float  # blob intensity at (x,y)
-        """
-
-    def _make_tuples(self, key):
-        print('Populating:', key)
-        self.insert1(key)
-        img = (Acquire.Image() & key).fetch1['image']
-        self.Blob().insert((
-                dict(key, blob_id=i, x=x, y=y, amplitude=img[y,x])
-                for i, (x, y) in enumerate(find_blobs(img))
-            ))
-        print('done')
-```
+<<[More efficient Detect](../python/experiment_detect2.py)
 
 The decision when to enter data as a sequence of `insert1` or a single `insert` must be made individually.  When network delays are negligible compared to the computation times, then inserting one tuple at a time with `insert1` may be preferable because the data are sent to the database as they are computed rather than queued in memory.
 
 ### Visualizing the schema
 At any point, you may visualize the entire schema using the `dj.ERD` class:
 
-{line-numbers=off}
 ```python
 >>> dj.ERD(schema).draw()
 ```
@@ -327,35 +234,30 @@ Let's illustrate a few queries for the results that.
 
 Query: All scientists who have done at least one experiment:
 
-{line-numbers=off}
 ```python
 Scientist() & Experiment()
 ```
 
 Query: All scientists who have not done any experiments:
 
-{line-numbers=off}
 ```python
 Scientist() - Experiment()
 ```
 
 Query: Experiment performed by Alice
 
-{line-numbers=off}
 ```python
 Experiment() & {'name' : 'Alice'}
 ```
 
 Query: Images collected by Alice:
 
-{line-numbers=off}
 ```python
 Acquire.Image() & (Experiment() & {'name': 'Alice'})
 ```
 
 This may be broken up into subqueries:
 
-{line-numbers=off}
 ```python
 alices = Experiment() & {'name': 'Alice'}
 Acquire.Image() & alices
@@ -363,28 +265,24 @@ Acquire.Image() & alices
 
 Query: Images with the experiment information included:
 
-{line-numbers=off}
 ```python
 Acquire.Image() * Experiment()
 ```
 
 Query: The number of experiments performed by each scientist:
 
-{line-numbers=off}
 ```python
 Scientist().aggr(Experiment(), n='count(exp_date)')
 ```
 
 Query: The number of experiments performed by Alice:
 
-{line-numbers=off}
 ```python
 Scientist().aggr(Experiment(), n='count(exp_date)') & {'name': 'Alice'}
 ```
 
 Query: Number of images acquired by each scientist:
 
-{line-numbers=off}
 ```python
 images = Experiment()*Acquire.Image()   # images with user names
 Scientist().aggr(images, n='count(image_id)')
@@ -392,7 +290,6 @@ Scientist().aggr(images, n='count(image_id)')
 
 Query: Number of images analyzed for each scientist:
 
-{line-numbers=off}
 ```python
 images = Experiment()*Localize()   # processed images with user names
 Scientist().aggr(images, n='count(image_id)')
@@ -400,7 +297,6 @@ Scientist().aggr(images, n='count(image_id)')
 
 Query: fraction of images processed for each scientist
 
-{line-numbers=off}
 ```python
 analyzed = Scientist().aggr(Experiment()*Localize(), m='count(image_id)')
 acquired = Scientist().aggr(Experiment()*Acquire.Image(), n='count(image_id)')
@@ -411,12 +307,10 @@ pcent_analyzed=(analyzed*acquired).proj(pcent = '100*m/n')
 ### Equivalent SQL
 For each of the above queries, invoke the `make_sql` method to see the resulting SQL code:
 
-{line-numbers=off}
 ```python
 >>> pcent_analyzed.make_sql()
 ```
 
-{line-numbers=off}
 ```sql
 SELECT * FROM (
     SELECT `name`, 100*m/n as `pcent`

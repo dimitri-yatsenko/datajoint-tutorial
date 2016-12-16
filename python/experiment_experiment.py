@@ -1,3 +1,4 @@
+@schema
 class Experiment(dj.Manual):
     definition = """ # daily experiment
     exp_date : date   # experiment date
