@@ -25,7 +25,7 @@ Report
 ### Preliminaries
 The following Python functions simulate the data acquisition and analysis.  Provided here only for completeness, they are not part of the main discussion.
 
-<<[Preliminary functions](../python/experiment_preliminaries.py)
+<<[Preliminary functions](python/experiment_preliminaries.py)
 
 ### Create database and declare tables 
 First, let's create the database called `blobs`:
@@ -39,13 +39,13 @@ schema = dj.schema('blobs', locals())
 ### `Scientist` and `Experiment`
 Now, let's create the table `Scientist` so that we can refer to individual scientists later.  We will populate it implicitly using the `contents` property.  The table is of type `dj.Lookup`, suggesting that its information is rather static, not meant to be entered for each experiment.
 
-<<[Declare the Scientist table](../python/experiment_scientist.py)
+<<[Declare the Scientist table](python/experiment_scientist.py)
 
 The `definition` property defines the structure of the table.  The first line contains the table comment, describing what information is represented by rows in the table.  This table only has one attribute (column) `name` of type variable-length character string up to 8 characters `varchar(8)`.  The column also has a comment describing its meaning.
 
 Now let's define the `Experiment` table containing the information about a day's experiment.
 
-<<[Declare the Experiment table](../python/experiment_experiment.py)
+<<[Declare the Experiment table](python/experiment_experiment.py)
 
 The `Experiment` table is of type `dj.Manual`, suggesting that it contains information entered manually in each experiment.
 
@@ -140,7 +140,7 @@ If the `insert` method is used to enter multiple entries at once and any one of 
 ### Acquisition
 Let's now define the table `Acquire` to acquire the results of experiments.
 
-<<[Declare the Acquire table](../python/experiment_acquire.py)
+<<[Declare the Acquire table](python/experiment_acquire.py)
 
 Let's unpack what is  going on here.
 
@@ -176,7 +176,7 @@ The automatic acquisition is performed by calling its `populate` method:
 ### Analysis
 Now let's write the classes `Localize` and `Localize.Blob` that compute the (x,y) locations and amplitudes detected blobs in each image.  They rely on the function `find_blobs` defined earlier. Note that function fails randomly (raises the `BlobFail` exception) to illustrate error recovery.
 
-<<[Declare the Detect table](../python/experiment_detect.py)
+<<[Declare the Detect table](python/experiment_detect.py)
 
 Similar to `Acquire`, we populate the `Localize` table using the populate method but we set the `suppress_errors` flag to skip the errors that occur in the `_make_tuples` calls:
 
@@ -214,7 +214,7 @@ This shows that 32 of 68 images have populated without errors.  Those that ended
 
 The execution may take some time because each blob is inserted individually, incurring network delays.  We can re-write the `_make_tuples` method to insert into the part table as a single insert, resulting in substantial speedup:
 
-<<[More efficient Detect](../python/experiment_detect2.py)
+<<[More efficient Detect](python/experiment_detect2.py)
 
 The decision when to enter data as a sequence of `insert1` or a single `insert` must be made individually.  When network delays are negligible compared to the computation times, then inserting one tuple at a time with `insert1` may be preferable because the data are sent to the database as they are computed rather than queued in memory.
 
