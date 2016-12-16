@@ -12,8 +12,8 @@ The condition `cond` may be one of the following:
 * an `AndList`
 * A boolean expression (`True` or `False` in Python or `true` or `false` in MATLAB)
 
-### Restriction by another relation 
-When restricting one relation by another relation `A & B`, the two relations must be *join-compatible*.  The result will contain all tuples from `A` for which there exist a matching tuple in `B`. 
+### Restriction with a relation 
+When restricting relation `A` with another relation `A & B`, the two relations must be *join-compatible*.  The result will contain all tuples from `A` for which there exist a matching tuple in `B`. 
 
 Restrict example 1
 : Restriction with another relation

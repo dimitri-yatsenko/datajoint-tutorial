@@ -40,31 +40,13 @@ schema = dj.schema('blobs', locals())
 ### `Scientist` and `Experiment`
 Now, let's create the table `Scientist` so that we can refer to individual scientists later.  We will populate it implicitly using the `contents` property.  The table is of type `dj.Lookup`, suggesting that its information is rather static, not meant to be entered for each experiment.
 
-{line-numbers=off}
-```python
-@schema
-class Scientist(dj.Lookup):
-    definition = """    # scientists in the lab
-    name : varchar(8)   # scientist name
-    """
-    contents = [['Alice'], ['Bob'], ['Carol']]
-```
+<<[Declare the Scientist table](code/experiment_scientist.py)
 
 The `definition` property defines the structure of the table.  The first line contains the table comment, describing what information is represented by rows in the table.  This table only has one attribute (column) `name` of type variable-length character string up to 8 characters `varchar(8)`.  The column also has a comment describing its meaning.
 
 Now let's define the `Experiment` table containing the information about a day's experiment.
 
-{line-numbers=off}
-```python
-@schema
-class Experiment(dj.Manual):
-    definition = """ # daily experiment
-    exp_date : date   # experiment date
-    ---
-    -> Scientist
-    notes="" : varchar(255)  # free notes about the experiment
-    """
-```
+<<[Declare the Experiment table](code/experiment_experiment.py)
 
 The `Experiment` table is of type `dj.Manual`, suggesting that it contains information entered manually in each experiment.
 

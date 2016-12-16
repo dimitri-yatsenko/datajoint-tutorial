@@ -15,7 +15,7 @@ The result of the union operator `A + B` contains all the tuples from both opera
 ### Examples of union
 
 Example 1
-:  Note that the order of the arguments does not matter.
+:  Note that the order of the attributes does not matter.
 
 ![](images/union-example1.png)
 

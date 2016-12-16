@@ -12,6 +12,7 @@ configuration.md
 experiment.md
 data_definition.md
 queries.md
+algebra.md
 restriction.md
 difference.md
 join.md
